@@ -1,0 +1,7 @@
+flask==2.3.2
+tensorflow==2.10.0
+mtcnn==0.1.1
+opencv-python==4.7.0.72
+numpy==1.23.5
+werkzeug==2.3.6
+gunicorn==20.1.0

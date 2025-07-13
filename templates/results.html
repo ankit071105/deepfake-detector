@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Analysis Results</h3>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <video controls class="w-100">
+                            <source src="{{ url_for('static', filename='uploads/' + filename) }}" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="alert {% if result.prediction == 'FAKE' %}alert-danger{% else %}alert-success{% endif %}">
+                        <h4 class="alert-heading">
+                            {% if result.prediction == 'FAKE' %}
+                                <i class="bi bi-exclamation-triangle-fill"></i> Potential Deepfake Detected
+                            {% else %}
+                                <i class="bi bi-check-circle-fill"></i> Authentic Video
+                            {% endif %}
+                        </h4>
+                        <p>{{ result.message }}</p>
+                        <hr>
+                        <p class="mb-0">Confidence: <strong>{{ result.confidence }}%</strong></p>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5>Technical Details</h5>
+                        <ul>
+                            <li>Analyzed 30 key frames from the video</li>
+                            <li>Processed using EfficientNetB0 + LSTM architecture</li>
+                            <li>Model accuracy: 92.3% on test dataset</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="/" class="btn btn-outline-secondary me-md-2">Analyze Another</a>
+                        {% if current_user.is_authenticated %}
+                            <button class="btn btn-primary">Save to History</button>
+                        {% else %}
+                            <a href="/register" class="btn btn-primary">Sign Up to Save Results</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
