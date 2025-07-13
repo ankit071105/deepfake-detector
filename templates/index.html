@@ -18,8 +18,10 @@
             <form id="uploadForm" method="POST" enctype="multipart/form-data" action="/upload">
                 <div class="mb-3">
                     <input class="form-control" type="file" name="file" id="fileInput" accept="video/*" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">Analyze Video</button>
+                </div> 
+<a href="results.html" class="btn btn-primary btn-lg" role="button" onclick="document.getElementById('uploadForm').submit()">
+  Analyze Video
+</a>
             </form>
             
             <div id="preview" class="mt-3 d-none">
